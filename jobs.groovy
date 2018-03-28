@@ -1,5 +1,5 @@
-def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
-def git = "MNT-Lab/mntlab-dsl"
+def gitURL = "https://github.com/LehaNoisy/groovy_DSL.git"
+def git = "LehaNoisy/groovy_DSL"
 def repo = "ashumilov"
 
 def command = "git ls-remote -h $gitURL"
