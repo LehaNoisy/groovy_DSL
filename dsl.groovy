@@ -17,14 +17,14 @@ def branches = proc.in.text.readLines().collect {
     it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')
 }
 
-job("MNTLAB-alahutsin-main-build-job") {
+job("MNTLAB-ashumilov-main-build-job") {
     parameters {
 	choiceParam('BRANCH_NAME', ['ashumilov2', 'master'], '')
         activeChoiceParam('BUILDS_TRIGGER') {
             filterable()
             choiceType('CHECKBOX')
             groovyScript {
-                script('["MNTLAB-shumilov-child1-build-job", "MNTLAB-ashumilov-child2-build-job", "MNTLAB-ashumilov-child3-build-job", "MNTLAB-ashumilov-child4-build-job"]')
+                script('["MNTLAB-shumilov2-child1-build-job", "MNTLAB-ashumilov2-child2-build-job", "MNTLAB-ashumilov2-child3-build-job", "MNTLAB-ashumilov2-child4-build-job"]')
             }
         }
     }
@@ -47,8 +47,7 @@ job("MNTLAB-alahutsin-main-build-job") {
 		}
 	    }
 	}	
-        shell('chmod +x script.sh && ./script.sh > output.log && cat output.log && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.log')
-    }
+ 	shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')    }
     publishers { 
 	archiveArtifacts('output.log')
     }
@@ -58,7 +57,7 @@ job("MNTLAB-alahutsin-main-build-job") {
 }
 
 1.upto(4) {
-job("MNTLAB-alahutsin-child${it}-build-job") {
+job("MNTLAB-ashumilov2-child${it}-build-job") {
     parameters {
 	choiceParam('BRANCH_NAME', branches, '')
     }
@@ -66,7 +65,7 @@ job("MNTLAB-alahutsin-child${it}-build-job") {
         github(git, '$BRANCH_NAME')
     }
     steps {
-        shell('chmod +x script.sh && ./script.sh > output.log && cat output.log && tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.log jobs.groovy script.sh')
+		 shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.txt jobs.groovy script.sh')	
     }
     publishers { 
         archiveArtifacts {
