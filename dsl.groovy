@@ -1,8 +1,9 @@
-t = "aliaksandr-lahutsin/testRepoForDSL"
-def repo = "alahutsin"
-
-def gitURL = "https://github.com/aliaksandr-lahutsin/testRepoForDSL.git"
+def gitURL = "https://github.com/LehaNoisy/groovy_DSL.git"
 def command = "git ls-remote -h $gitURL"
+def git = "LehaNoisy/groovy_DSL"
+def repo = "ashumilov2"
+
+
 
 def proc = command.execute()
 proc.waitFor()
@@ -17,17 +18,13 @@ def branches = proc.in.text.readLines().collect {
 }
 
 job("MNTLAB-alahutsin-main-build-job") {
-    logRotator {
-        numToKeep(5)
-        artifactNumToKeep(5)
-    }
     parameters {
-	choiceParam('BRANCH_NAME', ['alahutsin', 'master'], '')
+	choiceParam('BRANCH_NAME', ['ashumilov2', 'master'], '')
         activeChoiceParam('BUILDS_TRIGGER') {
             filterable()
             choiceType('CHECKBOX')
             groovyScript {
-                script('["MNTLAB-alahutsin-child1-build-job", "MNTLAB-alahutsin-child2-build-job", "MNTLAB-alahutsin-child3-build-job", "MNTLAB-alahutsin-child4-build-job"]')
+                script('["MNTLAB-shumilov-child1-build-job", "MNTLAB-ashumilov-child2-build-job", "MNTLAB-ashumilov-child3-build-job", "MNTLAB-ashumilov-child4-build-job"]')
             }
         }
     }
@@ -50,7 +47,7 @@ job("MNTLAB-alahutsin-main-build-job") {
 		}
 	    }
 	}	
-        shell('chmod +x do.sh && ./do.sh > output.log && cat output.log && tar -czf ${BRANCH_NAME}_dsl_do.tar.gz output.log')
+        shell('chmod +x script.sh && ./script.sh > output.log && cat output.log && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.log')
     }
     publishers { 
 	archiveArtifacts('output.log')
@@ -62,10 +59,6 @@ job("MNTLAB-alahutsin-main-build-job") {
 
 1.upto(4) {
 job("MNTLAB-alahutsin-child${it}-build-job") {
-    logRotator {
-        numToKeep(5)
-        artifactNumToKeep(5)
-    }
     parameters {
 	choiceParam('BRANCH_NAME', branches, '')
     }
@@ -73,12 +66,12 @@ job("MNTLAB-alahutsin-child${it}-build-job") {
         github(git, '$BRANCH_NAME')
     }
     steps {
-        shell('chmod +x do.sh && ./do.sh > output.log && cat output.log && tar -czf  ${BRANCH_NAME}_dsl_do.tar.gz output.log jobs.groovy do.sh')
+        shell('chmod +x script.sh && ./script.sh > output.log && cat output.log && tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.log jobs.groovy script.sh')
     }
     publishers { 
         archiveArtifacts {
             pattern('output.log')
-            pattern('${BRANCH_NAME}_dsl_do.tar.gz')
+            pattern('${BRANCH_NAME}_dsl_script.tar.gz')
             onlyIfSuccessful()
    }
   }
