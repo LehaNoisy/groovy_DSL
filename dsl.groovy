@@ -52,7 +52,7 @@ scm {
             scm {
                 git {
                     remote {
-                        name('mntlab-dsl')
+                        name('LehaNoisy')
                         url('https://github.com/LehaNoisy/groovy_DSL.git')
                     }
                     branch('$BRANCH_NAME')
