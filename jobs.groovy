@@ -51,7 +51,7 @@ steps {
             }
         }
     }   
-    //shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
+    shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf ${BRANCH_NAME}_dsl_script.tar.gz output.txt')
 }
 publishers { 
   archiveArtifacts('output.txt')
@@ -78,9 +78,9 @@ steps {
         }
     }
 }
-//steps {
-//    shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.txt jobs.groovy script.sh')
-//}
+steps {
+    shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.txt jobs.groovy script.sh')
+}
 publishers {
         archiveArtifacts {
             pattern('output.txt')
