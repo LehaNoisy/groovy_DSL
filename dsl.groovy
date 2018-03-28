@@ -42,7 +42,7 @@ for (i = 1; i <5; i++) {
         choiceParam('BRANCH_NAME', branches)
     }		   
     scm {
-         github ('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
+         github ('LehaNoisy/groovy_DSL', '$BRANCH_NAME')
     }
     steps {
         shell('chmod +x ./script.sh; ./script.sh >> output.txt; tar -czvf "${BRANCH_NAME}_dsl_script.tar.gz" output.txt script.sh jobs.groovy')    	
