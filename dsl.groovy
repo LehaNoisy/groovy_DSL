@@ -40,7 +40,7 @@ scm {
    publishers {
         archiveArtifacts('output.txt')
     }
-
+}
 
 //creating child jobs
     1.upto(4) {
@@ -48,13 +48,6 @@ scm {
             description 'Echo the shell.sh.'
             parameters {
                 choiceParam('BRANCH_NAME', branches, 'Select git branch')
-                /*gitParam('BRANCH_NAME') {
-                    description('branch selection')
-                    type('BRANCH')
-                    //branch('~ /*')
-                    //defaultValue('/ashumilov')
-                    sortMode('ASCENDING')
-                }*/
             }
             scm {
                 git {
@@ -77,5 +70,3 @@ scm {
             }
         }
     }
-}
-}
