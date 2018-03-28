@@ -19,12 +19,12 @@ def branches = proc.in.text.readLines().collect {
 
 job("MNTLAB-ashumilov-main-build-job") {
     parameters {
-	choiceParam('BRANCH_NAME', ['ashumilov2', 'master'], '')
+	choiceParam('BRANCH_NAME', ['ashumilov', 'master'], '')
         activeChoiceParam('BUILDS_TRIGGER') {
             filterable()
             choiceType('CHECKBOX')
             groovyScript {
-                script('["MNTLAB-shumilov2-child1-build-job", "MNTLAB-ashumilov2-child2-build-job", "MNTLAB-ashumilov2-child3-build-job", "MNTLAB-ashumilov2-child4-build-job"]')
+                script('["MNTLAB-shumilov-child1-build-job", "MNTLAB-ashumilov-child2-build-job", "MNTLAB-ashumilov-child3-build-job", "MNTLAB-ashumilov-child4-build-job"]')
             }
         }
     }
