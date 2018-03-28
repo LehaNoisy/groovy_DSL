@@ -12,7 +12,7 @@ job('EPBYMINW2470/MNTLAB-ashumilov-DSL-build-job') {
     description 'Create child jobs.'
     parameters {
         //choiceParam(String parameterName, List<String> options, String description)
-        choiceParam('BRANCH_NAME', ['aaksionkin', 'master'])
+        choiceParam('BRANCH_NAME', ['ashumilov', 'master'])
         activeChoiceParam('BUILDS_TRIGGER') {
             description('Available options')
             choiceType('CHECKBOX')
