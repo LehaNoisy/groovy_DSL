@@ -79,7 +79,7 @@ steps {
     }
 }
 steps {
-    shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.txt dcl.groovy script.sh')
+    shell('chmod +x script.sh && ./script.sh > output.txt && cat output.txt && tar -czf  ${BRANCH_NAME}_dsl_script.tar.gz output.txt dsl.groovy script.sh')
 }
 publishers {
         archiveArtifacts {
