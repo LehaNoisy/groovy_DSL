@@ -1,4 +1,4 @@
-def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git" as java.lang.Object
+def command = "git ls-remote -h https://github.com/LehaNoisy/groovy_DSL.git" as java.lang.Object
 def proc = command.execute()
 proc.waitFor()
 if ( proc.exitValue() != 0 ) {
@@ -26,7 +26,7 @@ job('EPBYMINW2470/MNTLAB-ashumilov-DSL-build-job') {
         }
 
     scm {
-        github 'MNT-Lab/mntlab-dsl','$BRANCH_NAME'
+        github 'LehaNoisy/groovy_DSL','$BRANCH_NAME'
     }
     steps {
         downstreamParameterized {
@@ -67,8 +67,8 @@ job('EPBYMINW2470/MNTLAB-ashumilov-DSL-build-job') {
             scm {
                 git {
                     remote {
-                        name('mntlab-dsl')
-                        url('https://github.com/MNT-Lab/mntlab-dsl.git')
+                        name('groovy_DSL')
+                        url('https://github.com/LehaNoisy/groovy_DSL.git')
                     }
                     branch('$BRANCH_NAME')
                 }
