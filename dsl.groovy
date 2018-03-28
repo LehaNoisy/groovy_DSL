@@ -40,7 +40,7 @@ scm {
    publishers {
         archiveArtifacts('output.txt')
     }
-}
+
 
 //creating child jobs
     1.upto(4) {
@@ -77,4 +77,5 @@ scm {
             }
         }
     }
+}
 }
