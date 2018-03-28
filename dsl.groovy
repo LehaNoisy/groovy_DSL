@@ -33,6 +33,10 @@ parameters {
 scm {
         github(git, '$BRANCH_NAME')
 }
+    
+triggers {
+        scm('H/5 * * * *')
+}
 
 steps {
     downstreamParameterized {
